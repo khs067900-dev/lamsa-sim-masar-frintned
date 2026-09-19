@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "../components/products/ProductCard";
 import type { Product } from "../components/products/types";
+import { track } from "../lib/useTikTokEvents";
 
 export default function SearchClient() {
   const searchParams = useSearchParams();
@@ -17,7 +18,16 @@ export default function SearchClient() {
     setLoading(true);
     fetch(`/api/products?q=${encodeURIComponent(q)}`)
       .then((r) => r.json())
-      .then((data) => setProducts(Array.isArray(data) ? data : []))
+      .then((data) => {
+        const list = Array.isArray(data) ? data : [];
+        setProducts(list);
+        track("Search", {
+          contents: list.slice(0, 5).map((p: Product) => ({ content_id: p._id, content_type: "product" as const, content_name: p.name })),
+          value: 0,
+          currency: "SAR",
+          search_string: q,
+        });
+      })
       .finally(() => setLoading(false));
   }, [q]);
 

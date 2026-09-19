@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, CheckCircle } from "lucide-react";
 import { useCartStore } from "../../store/cartStore";
+import { identify, track } from "../../lib/useTikTokEvents";
 
 const fmt = (n: number) => n.toLocaleString("ar-SA");
 
@@ -105,19 +106,20 @@ export default function VerifyPage() {
 
   // ── بعد النجاح: حفظ الطلب وتنظيف السلة ────────────────────────────────────
   const handleSuccess = async (verifyData: VerifyData) => {
-    // 1) حفظ الطلب في localStorage
     savePendingOrder(verifyData);
-    // 2) محاولة claim (لو المستخدم مسجل)
     if (!claimedRef.current) {
       claimedRef.current = true;
       await claimOrders();
     }
-    // 3) تنظيف السلة
+    identify();
+    track("Purchase", {
+      contents: (verifyData.items || []).map(i => ({ content_id: i.productId || "", content_type: "product" as const, content_name: i.name })),
+      value: verifyData.amount,
+      currency: "SAR",
+    });
     clear();
-    // 4) تنظيف session data
     sessionStorage.removeItem("verify_data");
     sessionStorage.removeItem(`verify_attempts_${verifyData.orderId}`);
-    // 5) الانتقال لصفحة النجاح
     setPhase("success");
   };
 

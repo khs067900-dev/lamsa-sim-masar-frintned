@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { identify, track } from "../../lib/useTikTokEvents";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoArrowForward, IoShareSocial, IoHomeOutline, IoChevronBack, IoCartOutline } from "react-icons/io5";
@@ -19,6 +20,16 @@ export default function ProductPageClient({ id, initialProduct }: { id: string; 
   const addItem = useCartStore((s) => s.addItem);
 
   const product = initialProduct;
+
+  useEffect(() => {
+    if (!product) return;
+    identify();
+    track("ViewContent", {
+      contents: [{ content_id: product._id, content_type: "product", content_name: product.name }],
+      value: product.salePrice ?? product.originalPrice ?? 0,
+      currency: "SAR",
+    });
+  }, [product?._id]);
 
   if (!product)
     return (
@@ -84,7 +95,15 @@ export default function ProductPageClient({ id, initialProduct }: { id: string; 
           <ProductInfo
             product={product}
             addedToCart={addedToCart}
-            onAddToCart={(qty) => { addItem(product, qty); setAddedToCart(true); }}
+            onAddToCart={(qty) => {
+              addItem(product, qty);
+              setAddedToCart(true);
+              track("AddToCart", {
+                contents: [{ content_id: product._id, content_type: "product", content_name: product.name }],
+                value: (product.salePrice ?? product.originalPrice ?? 0) * qty,
+                currency: "SAR",
+              });
+            }}
             onBuyNow={(qty) => { addItem(product, qty); router.push("/cart"); }}
           />
         </div>

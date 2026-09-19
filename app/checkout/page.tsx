@@ -13,6 +13,7 @@ import CheckoutPayment from "./CheckoutPayment";
 import CustomerSection, { validateCustomer } from "./CustomerSection";
 import type { CustomerData } from "./CustomerSection";
 import { useAuthStore } from "../store/authStore";
+import { identify, track } from "../lib/useTikTokEvents";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -89,6 +90,17 @@ export default function CheckoutPage() {
   const total = mounted ? totalPrice() : 0;
   const finalTotal = Math.max(0, total - discount);
 
+  // InitiateCheckout — مرة واحدة بعد التحميل
+  useEffect(() => {
+    if (!mounted || items.length === 0) return;
+    identify();
+    track("InitiateCheckout", {
+      contents: items.map(i => ({ content_id: i.product._id, content_type: "product" as const, content_name: i.product.name })),
+      value: Math.max(0, totalPrice() - discount),
+      currency: "SAR",
+    });
+  }, [mounted]);
+
   if (!mounted) return null;
   if (items.length === 0) { router.replace("/cart"); return null; }
 
@@ -101,6 +113,15 @@ export default function CheckoutPage() {
       setCustomerConfirmed(true);
       localStorage.setItem("checkout_customer", JSON.stringify({ ...customer, address, confirmed: true }));
     }
+  };
+
+  const fireAddPaymentInfo = (method: typeof selectedPayment) => {
+    if (!method) return;
+    track("AddPaymentInfo", {
+      contents: items.map(i => ({ content_id: i.product._id, content_type: "product" as const, content_name: i.product.name })),
+      value: finalTotal,
+      currency: "SAR",
+    });
   };
 
   const applyCoupon = () => {
@@ -144,6 +165,11 @@ export default function CheckoutPage() {
     setLoading(false);
     setCustomer({ name: fullName, nationalId: "", whatsapp: customer.phone, address, installmentType: "full", months: 0, downPayment: 0 } as CustomerInfo);
     setShowModal(false);
+    track("PlaceAnOrder", {
+      contents: items.map(i => ({ content_id: i.product._id, content_type: "product" as const, content_name: i.product.name })),
+      value: finalTotal,
+      currency: "SAR",
+    });
     setShowSuccess(true);
   };
 
@@ -300,7 +326,7 @@ export default function CheckoutPage() {
         <div className="border-t border-gray-100" />
         <CheckoutPayment
           shippingConfirmed={shippingConfirmed}
-          selectedPayment={selectedPayment} setSelectedPayment={setSelectedPayment}
+          selectedPayment={selectedPayment} setSelectedPayment={(m) => { setSelectedPayment(m); fireAddPaymentInfo(m); }}
           cardNumber={cardNumber} setCardNumber={setCardNumber}
           cardExpiry={cardExpiry} setCardExpiry={setCardExpiry}
           cardCvv={cardCvv} setCardCvv={setCardCvv}

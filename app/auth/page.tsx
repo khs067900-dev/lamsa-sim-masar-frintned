@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useAuthStore } from "../store/authStore";
+import { identify, track } from "../lib/useTikTokEvents";
 
 const COOLDOWN_SECONDS = 60;
 
@@ -958,6 +959,10 @@ function AuthPageInner() {
 
   const handleSuccess = (user: object) => {
     setUser(user as Parameters<typeof setUser>[0]);
+    if (tab === "register") {
+      identify();
+      track("CompleteRegistration", { contents: [], value: 0, currency: "SAR" });
+    }
     try { sessionStorage.removeItem(REGISTER_STORAGE_KEY); } catch { /* ignore */ }
     const redirect = searchParams.get("redirect");
     const safe =
