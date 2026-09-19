@@ -1,6 +1,27 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sc-static.net https://analytics.tiktok.com",
+              "connect-src 'self' https://tr.snapchat.com https://sc-static.net https://analytics.tiktok.com",
+              "img-src 'self' data: blob: https://tr.snapchat.com https:",
+              "style-src 'self' 'unsafe-inline'",
+              "font-src 'self' data: https://fonts.gstatic.com",
+              "frame-src 'none'",
+            ].join("; "),
+          },
+        ],
+      },
+    ];
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: "10mb",
