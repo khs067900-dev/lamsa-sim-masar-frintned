@@ -66,8 +66,8 @@ function OtpInputs({
             error
               ? "border-red-400 bg-red-50 text-red-600"
               : digit
-              ? "border-[#0A1C29] text-[#0A1C29]"
-              : "border-[#d9d9d9] focus:border-[#B5854A]"
+              ? "border-[#284064] text-[#284064]"
+              : "border-[#8BA8D2] focus:border-[#284064]"
           }`}
         />
       ))}
@@ -128,7 +128,7 @@ function Field({
         className={`w-full px-4 py-3 border text-sm focus:outline-none transition-colors ${
           error
             ? "border-red-400 bg-red-50"
-            : "border-[#d9d9d9] focus:border-[#B5854A]"
+            : "border-[#8BA8D2] focus:border-[#284064]"
         }`}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
@@ -156,14 +156,14 @@ function Btn({
     "w-full py-3 font-semibold text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2";
   const styles =
     variant === "primary"
-      ? "bg-[#0A1C29] text-white hover:bg-[#1a3a5c]"
-      : "border border-[#d9d9d9] text-[#0A1C29] hover:border-[#0A1C29] bg-white";
+      ? "text-white"
+      : "border text-[#284064] bg-white";
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled || loading}
-      style={{ borderRadius: 0 }}
+      style={{ borderRadius: 0, ...(variant === "primary" ? { background: "var(--color-2)" } : { borderColor: "var(--color-4)" }) }}
       className={`${base} ${styles}`}
     >
       {loading ? <Spinner /> : children}
@@ -404,9 +404,9 @@ function RegisterForm({
     return (
       <div className="space-y-5">
         <div className="text-center space-y-1">
-          <p className="text-base font-semibold text-[#0A1C29]">تحقق من بريدك الإلكتروني</p>
-          <p className="text-sm text-gray-500">أرسلنا رمز تحقق مكوّن من 6 أرقام إلى</p>
-          <p className="text-sm font-semibold text-[#B5854A]" dir="ltr">{maskedEmail}</p>
+          <p className="text-base font-semibold" style={{ color: "var(--color-2)" }}>تحقق من بريدك الإلكتروني</p>
+          <p className="text-sm" style={{ color: "var(--color-3)" }}>أرسلنا رمز تحقق مكوّن من 6 أرقام إلى</p>
+          <p className="text-sm font-semibold" style={{ color: "var(--color-4)" }} dir="ltr">{maskedEmail}</p>
         </div>
 
         <OtpInputs otp={otp} setOtp={setOtp} error={otpError} setError={setOtpError} onComplete={handleVerifyOtp} />
@@ -416,18 +416,11 @@ function RegisterForm({
           إنشاء الحساب والدخول
         </Btn>
 
-        <div className="flex items-center justify-between text-xs text-gray-400 pt-1 border-t border-[#f0f0f0]">
-          <button
-            onClick={() => { setStep("form"); setOtp(["", "", "", "", "", ""]); setOtpError(""); }}
-            className="hover:text-[#0A1C29] transition-colors font-medium"
-          >
+        <div className="flex items-center justify-between text-xs pt-1 border-t" style={{ color: "var(--color-3)", borderColor: "var(--color-1)" }}>
+          <button onClick={() => { setStep("form"); setOtp(["", "", "", "", "", ""]); setOtpError(""); }} className="transition-colors font-medium hover:opacity-70">
             تعديل البيانات
           </button>
-          <button
-            onClick={handleResend}
-            disabled={cooldown > 0 || loading}
-            className="hover:text-[#0A1C29] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+          <button onClick={handleResend} disabled={cooldown > 0 || loading} className="transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-70">
             {cooldown > 0 ? `إعادة الإرسال (${cooldown}ث)` : "إعادة إرسال الرمز"}
           </button>
         </div>
@@ -469,7 +462,7 @@ function RegisterForm({
             placeholder={extra?.placeholder}
             style={{ borderRadius: 0 }}
             className={`w-full px-4 py-3 border text-sm focus:outline-none transition-colors ${extra?.suffix ? "pr-10" : ""} ${
-              err ? "border-red-400 bg-red-50" : "border-[#d9d9d9] focus:border-[#B5854A]"
+              err ? "border-red-400 bg-red-50" : "border-[#8BA8D2] focus:border-[#284064]"
             }`}
           />
           {/* suffix slot (e.g. show/hide password button) */}
@@ -709,8 +702,8 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
           </svg>
         </div>
         <div>
-          <p className="font-semibold text-[#0A1C29] text-base">تم تغيير كلمة المرور</p>
-          <p className="text-sm text-gray-500 mt-1">يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة</p>
+          <p className="font-semibold text-base" style={{ color: "var(--color-2)" }}>تم تغيير كلمة المرور</p>
+          <p className="text-sm mt-1" style={{ color: "var(--color-3)" }}>يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة</p>
         </div>
         <Btn onClick={() => { setStep("login"); setForgotEmail(""); setOtp(["","","","","",""]); setNewPassword(""); }}>
           العودة لتسجيل الدخول
@@ -724,9 +717,9 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
     return (
       <div className="space-y-5">
         <div className="text-center space-y-1">
-          <p className="text-base font-semibold text-[#0A1C29]">تحقق من بريدك الإلكتروني</p>
-          <p className="text-sm text-gray-500">أرسلنا رمز تحقق إلى</p>
-          <p className="text-sm font-semibold text-[#B5854A]" dir="ltr">{maskedForgotEmail}</p>
+          <p className="text-base font-semibold" style={{ color: "var(--color-2)" }}>تحقق من بريدك الإلكتروني</p>
+          <p className="text-sm" style={{ color: "var(--color-3)" }}>أرسلنا رمز تحقق إلى</p>
+          <p className="text-sm font-semibold" style={{ color: "var(--color-4)" }} dir="ltr">{maskedForgotEmail}</p>
         </div>
 
         <OtpInputs otp={otp} setOtp={setOtp} error={otpError} setError={setOtpError} />
@@ -747,7 +740,7 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
               placeholder="6 أحرف على الأقل"
               style={{ borderRadius: 0 }}
               className={`w-full px-4 py-3 border text-sm focus:outline-none transition-colors pr-10 ${
-                newPasswordError ? "border-red-400 bg-red-50" : "border-[#d9d9d9] focus:border-[#B5854A]"
+                newPasswordError ? "border-red-400 bg-red-50" : "border-[#8BA8D2] focus:border-[#284064]"
               }`}
             />
             <button
@@ -776,18 +769,11 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
           تغيير كلمة المرور
         </Btn>
 
-        <div className="flex items-center justify-between text-xs text-gray-400 pt-1 border-t border-[#f0f0f0]">
-          <button
-            onClick={() => { setStep("forgot-email"); setOtp(["","","","","",""]); setOtpError(""); setNewPassword(""); }}
-            className="hover:text-[#0A1C29] transition-colors font-medium"
-          >
+        <div className="flex items-center justify-between text-xs pt-1 border-t" style={{ color: "var(--color-3)", borderColor: "var(--color-1)" }}>
+          <button onClick={() => { setStep("forgot-email"); setOtp(["","","","","",""]); setOtpError(""); setNewPassword(""); }} className="transition-colors font-medium hover:opacity-70">
             تغيير البريد
           </button>
-          <button
-            onClick={handleResendForgot}
-            disabled={cooldown > 0 || loading}
-            className="hover:text-[#0A1C29] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+          <button onClick={handleResendForgot} disabled={cooldown > 0 || loading} className="transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-70">
             {cooldown > 0 ? `إعادة الإرسال (${cooldown}ث)` : "إعادة إرسال الرمز"}
           </button>
         </div>
@@ -800,8 +786,8 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
     return (
       <div className="space-y-5">
         <div>
-          <p className="text-base font-semibold text-[#0A1C29]">نسيت كلمة المرور؟</p>
-          <p className="text-sm text-gray-500 mt-1">أدخل بريدك الإلكتروني وسنرسل لك رمز تحقق لإعادة التعيين</p>
+          <p className="text-base font-semibold" style={{ color: "var(--color-2)" }}>نسيت كلمة المرور؟</p>
+          <p className="text-sm mt-1" style={{ color: "var(--color-3)" }}>أدخل بريدك الإلكتروني وسنرسل لك رمز تحقق لإعادة التعيين</p>
         </div>
 
         <Field
@@ -824,7 +810,8 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
 
         <button
           onClick={() => { setStep("login"); setForgotEmail(""); setForgotEmailError(""); }}
-          className="w-full text-sm text-gray-500 hover:text-[#0A1C29] transition-colors text-center"
+          className="w-full text-sm transition-colors text-center hover:opacity-70"
+          style={{ color: "var(--color-3)" }}
         >
           العودة لتسجيل الدخول
         </button>
@@ -879,7 +866,7 @@ function LoginForm({ onSuccess }: { onSuccess: (user: object) => void }) {
             placeholder="••••••••"
             style={{ borderRadius: 0 }}
             className={`w-full px-4 py-3 border text-sm focus:outline-none transition-colors pr-10 ${
-              error ? "border-red-400 bg-red-50" : "border-[#d9d9d9] focus:border-[#B5854A]"
+              error ? "border-red-400 bg-red-50" : "border-[#8BA8D2] focus:border-[#284064]"
             }`}
           />
           <button
@@ -993,24 +980,23 @@ function AuthPageInner() {
             className="object-contain h-24 w-auto"
             priority
           />
-          <h1 className="text-xl font-bold text-[#0A1C29]">أهلًا بك في مؤسسة لمسة</h1>
+          <h1 className="text-xl font-bold" style={{ color: "var(--color-2)" }}>أهلًا بك في متجر الشريحة الموثوقة</h1>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-[#e5e7eb] mb-6">
+        <div className="flex border-b mb-6" style={{ borderColor: "var(--color-4)" }}>
           {(["login", "register"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => {
-                // Reset OTP step when switching tabs so stale OTP isn't reused
                 if (t === "login") handleRegisterStateChange({ step: "form" });
                 setTab(t);
               }}
-              className={`flex-1 py-3 text-sm font-semibold transition-colors border-b-2 -mb-px ${
-                tab === t
-                  ? "border-[#0A1C29] text-[#0A1C29]"
-                  : "border-transparent text-gray-400 hover:text-gray-600"
-              }`}
+              className="flex-1 py-3 text-sm font-semibold transition-colors border-b-2 -mb-px"
+              style={tab === t
+                ? { borderColor: "var(--color-2)", color: "var(--color-2)" }
+                : { borderColor: "transparent", color: "var(--color-3)" }
+              }
             >
               {t === "login" ? "تسجيل الدخول" : "إنشاء حساب"}
             </button>
