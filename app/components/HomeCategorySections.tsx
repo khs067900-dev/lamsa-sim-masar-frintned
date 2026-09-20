@@ -70,7 +70,7 @@ export default async function HomeCategorySections() {
 
             <div className="flex items-center justify-between mb-6 sm:mb-10">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-7 rounded-full bg-[#B5854A]" />
+                <div className="w-1 h-7 rounded-full bg-[#284064]" />
                 <div>
                   <h2 className="text-xl sm:text-3xl font-black text-gray-900">{sec.brand}</h2>
                   <p className="text-gray-500 text-xs sm:text-sm mt-0.5">أفضل المنتجات في هذه الفئة</p>
@@ -79,10 +79,10 @@ export default async function HomeCategorySections() {
               <Link
                 href={`/all-products?brand=${encodeURIComponent(sec.brand)}`}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full transition-opacity hover:opacity-80"
-                style={{ background: "rgba(181,133,74,0.1)", border: "1px solid rgba(181,133,74,0.25)" }}
+                style={{ background: "rgba(40,64,100,0.1)", border: "1px solid rgba(40,64,100,0.25)" }}
               >
-                <Tag className="w-3.5 h-3.5 text-[#B5854A]" />
-                <span className="text-[#B5854A] text-xs font-bold">عرض الكل</span>
+                <Tag className="w-3.5 h-3.5 text-[#284064]" />
+                <span className="text-[#284064] text-xs font-bold">عرض الكل</span>
               </Link>
             </div>
 

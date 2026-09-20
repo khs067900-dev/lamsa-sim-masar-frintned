@@ -107,14 +107,14 @@ export default function ProductCard({
                 style={
                   rank === 1
                     ? {
-                        background: "linear-gradient(135deg, #B5854A 0%, #C8A375 100%)",
+                        background: "linear-gradient(135deg, #284064 0%, #60758E 100%)",
                         color: "#ffffff",
-                        boxShadow: "0 2px 10px rgba(181,133,74,0.4)",
+                        boxShadow: "0 2px 10px rgba(40,64,100,0.4)",
                       }
                     : {
-                        background: "rgba(181,133,74,0.1)",
-                        color: "#B5854A",
-                        border: "1px solid rgba(181,133,74,0.35)",
+                        background: "rgba(40,64,100,0.1)",
+                        color: "#284064",
+                        border: "1px solid rgba(40,64,100,0.35)",
                       }
                 }
               >
@@ -148,9 +148,9 @@ export default function ProductCard({
                 <span
                   className="text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider leading-none"
                   style={{
-                    background: "rgba(181,133,74,0.1)",
-                    border: "1px solid rgba(181,133,74,0.3)",
-                    color: "#B5854A",
+                    background: "rgba(40,64,100,0.1)",
+                    border: "1px solid rgba(40,64,100,0.3)",
+                    color: "#284064",
                   }}
                 >
                   {brand}
@@ -160,9 +160,9 @@ export default function ProductCard({
                 <span
                   className="flex items-center gap-0.5 text-[9px] font-bold px-1.5 py-0.5 rounded-md leading-none"
                   style={{
-                    background: "rgba(181,133,74,0.08)",
-                    border: "1px solid rgba(181,133,74,0.2)",
-                    color: "#B5854A",
+                    background: "rgba(40,64,100,0.08)",
+                    border: "1px solid rgba(40,64,100,0.2)",
+                    color: "#284064",
                   }}
                 >
                   <IoWifiOutline size={8} />
@@ -181,7 +181,7 @@ export default function ProductCard({
               className="h-px"
               style={{
                 background:
-                  "linear-gradient(90deg, rgba(181,133,74,0.25), rgba(181,133,74,0.06) 60%, transparent)",
+                  "linear-gradient(90deg, rgba(40,64,100,0.25), rgba(40,64,100,0.06) 60%, transparent)",
               }}
             />
 
@@ -196,7 +196,7 @@ export default function ProductCard({
                 <div className="flex items-baseline gap-1">
                   <span
                     className="text-[16px] sm:text-[26px] font-black leading-none tracking-tight"
-                    style={{ color: hasDiscount ? "#B5854A" : "#111827" }}
+                    style={{ color: hasDiscount ? "#284064" : "#111827" }}
                   >
                     {fmt(displayPrice!)}
                   </span>
