@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://www.lamsa-smartt.com";
+const BASE_URL = "https://www.alsharihaa.com";
 const BACKEND_URL = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const staticRoutes = [

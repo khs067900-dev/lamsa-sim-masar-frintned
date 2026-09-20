@@ -14,7 +14,7 @@ const cairo = Cairo({
 });
 
 const BACKEND = process.env.BACKEND_URL || "http://localhost:5000";
-const SITE_URL = "https://www.lamsa-smartt.com";
+const SITE_URL = "https://www.alsharihaa.com";
 
 export const viewport: Viewport = {
   themeColor: "#04454A",
@@ -35,9 +35,9 @@ async function getCompany() {
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getCompany();
 
-  const siteName = c.nameAr || "لمسه لبيع الشرائح";
+  const siteName = c.nameAr || "الشريحة الموثوقة";
   const titleDefault = `${siteName} | أفضل متجر لبيع شرائح الاتصال في السعودية`;
-  const description = c.details || "لمسه لبيع الشرائح - تسوق أفضل شرائح الاتصال وباقات الإنترنت من فيرجن وSTC وزين وموبايلي بأسعار مميزة. توصيل سريع لجميع مناطق المملكة العربية السعودية.";
+  const description = c.details || "الشريحة الموثوقة - تسوق أفضل شرائح الاتصال وباقات الإنترنت من فيرجن وSTC وزين وموبايلي بأسعار مميزة. توصيل سريع لجميع مناطق المملكة العربية السعودية.";
   const ogImage = `${SITE_URL}/logo.webp`;
 
   return {
@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description,
     keywords: [
-      "لمسه", "لمسه لبيع الشرائح", "basmathatify", "بيع شرائح الاتصال",
+      "الشريحة الموثوقة", "alsharihaa", "بيع شرائح الاتصال",
       "شرائح اتصال", "باقات إنترنت", "شريحة SIM", "شريحة بيانات",
       "فيرجن موبايل", "Virgin Mobile", "STC", "زين", "موبايلي",
       "إنترنت مفتوح", "باقة شهرية", "باقة سنوية", "5G", "4G",
@@ -88,8 +88,8 @@ export async function generateMetadata(): Promise<Metadata> {
       title: titleDefault,
       description,
       images: [ogImage],
-      creator: "@lamsasimicard",
-      site: "@lamsasimicard",
+      creator: "@alsharihaa",
+      site: "@alsharihaa",
     },
     alternates: {
       canonical: SITE_URL,
