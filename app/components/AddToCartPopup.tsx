@@ -80,7 +80,7 @@ export default function AddToCartPopup() {
             <motion.div
               className="h-full origin-left"
               style={{
-                background: "linear-gradient(90deg,#B5854A,#C8A375)",
+                background: "linear-gradient(90deg,#284064,#60758E)",
                 scaleX: progress,
                 transformOrigin: "left",
               }}
@@ -90,7 +90,7 @@ export default function AddToCartPopup() {
 
           {/* ── Header ── */}
           <div className="flex items-center gap-2 px-4 pt-3 pb-2" dir="rtl">
-            <IoCheckmarkCircle size={18} className="text-[#B5854A] shrink-0" />
+            <IoCheckmarkCircle size={18} className="text-[#284064] shrink-0" />
             <span className="text-sm font-black text-gray-900">تمّت الإضافة إلى سلة التسوق</span>
           </div>
 
