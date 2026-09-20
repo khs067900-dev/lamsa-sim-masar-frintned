@@ -153,8 +153,8 @@ export default function AddToCartPopup() {
             <button
               onClick={handleCheckout}
               aria-label="إتمام الطلب"
-              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-white text-[13px] font-black transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B5854A]"
-              style={{ background: "linear-gradient(135deg,#B5854A,#C8A375)" }}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-white text-[13px] font-black transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#284064]"
+              style={{ background: "linear-gradient(135deg,#284064,#60758E)" }}
             >
               <IoCheckmarkCircle size={15} />
               إتمام الطلب
