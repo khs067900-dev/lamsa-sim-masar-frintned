@@ -134,7 +134,7 @@ export default function AddToCartPopup() {
               <div className="flex items-center gap-1 mt-0.5">
                 <span
                   className="text-[15px] font-black leading-none"
-                  style={{ color: product.hasDiscount ? "#B5854A" : "#111827" }}
+                  style={{ color: product.hasDiscount ? "#284064" : "#111827" }}
                 >
                   {fmt(product.price)}
                 </span>
