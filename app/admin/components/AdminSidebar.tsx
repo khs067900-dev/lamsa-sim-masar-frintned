@@ -10,7 +10,7 @@ const navItems = [
   { href: "/admin/dashboard", label: "الرئيسية", icon: LayoutDashboard },
   { href: "/admin/users", label: "إدارة المستخدمين", icon: Users },
   { href: "/admin/company", label: "بيانات الشركة", icon: Building2 },
-  { href: "/admin/files", label: "الملفات", icon: FolderOpen },
+  // { href: "/admin/files", label: "الملفات", icon: FolderOpen },
 
   // { href: "/admin/banks", label: "البنوك", icon: Landmark },
   { href: "/admin/reviews", label: "آراء العملاء", icon: MessageSquare },
