@@ -54,18 +54,20 @@ export default function ProductPageClient({ id, initialProduct }: { id: string; 
 
       {/* Top Bar */}
       <header
-        className="sticky top-0 z-50 border-b border-gray-200 backdrop-blur-xl bg-white/90"
+        className="sticky top-0 z-50 border-b backdrop-blur-xl bg-white/90"
+        style={{ borderColor: "var(--color-4)" }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.back()}
-              className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-gray-600 hover:border-[#B5854A] hover:text-[#B5854A] transition bg-gray-50"
+              className="w-9 h-9 flex items-center justify-center rounded-xl border transition"
+              style={{ borderColor: "var(--color-4)", color: "var(--color-3)", background: "var(--color-1)" }}
             >
               <IoArrowForward size={17} />
             </button>
-            <nav className="hidden sm:flex items-center gap-1.5 text-xs text-gray-400">
-              <Link href="/" className="hover:text-[#B5854A] transition flex items-center gap-1">
+            <nav className="hidden sm:flex items-center gap-1.5 text-xs" style={{ color: "var(--color-3)" }}>
+              <Link href="/" className="transition flex items-center gap-1 hover:opacity-70">
                 <IoHomeOutline size={12} />
                 الرئيسية
               </Link>
@@ -76,12 +78,13 @@ export default function ProductPageClient({ id, initialProduct }: { id: string; 
                   <IoChevronBack size={10} />
                 </>
               )}
-              <span className="text-[#B5854A] font-bold truncate max-w-[180px]">{product.name}</span>
+              <span className="font-bold truncate max-w-[180px]" style={{ color: "var(--color-2)" }}>{product.name}</span>
             </nav>
           </div>
           <button
             onClick={handleShare}
-            className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-gray-600 hover:border-[#B5854A] hover:text-[#B5854A] transition bg-gray-50"
+            className="w-9 h-9 flex items-center justify-center rounded-xl border transition"
+            style={{ borderColor: "var(--color-4)", color: "var(--color-3)", background: "var(--color-1)" }}
           >
             <IoShareSocial size={15} />
           </button>
@@ -119,13 +122,14 @@ export default function ProductPageClient({ id, initialProduct }: { id: string; 
 
       {/* Mobile Floating CTA */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-xl"
+        className="fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t bg-white/95 backdrop-blur-xl"
+        style={{ borderColor: "var(--color-4)" }}
       >
         <div className="px-4 py-3" dir="rtl">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs text-gray-400 truncate flex-1 ml-3">{product.name}</p>
+            <p className="text-xs truncate flex-1 ml-3" style={{ color: "var(--color-3)" }}>{product.name}</p>
             <div className="flex items-baseline gap-1">
-              <span className="text-xl font-black text-[#B5854A]">{finalPrice.toLocaleString("en-US")}</span>
+              <span className="text-xl font-black" style={{ color: "var(--color-2)" }}>{finalPrice.toLocaleString("en-US")}</span>
               <span className="text-xs text-gray-400"><img src="/money-icon.webp" alt="ر.س" className="inline w-6 h-6 object-contain align-middle" /></span>
             </div>
           </div>

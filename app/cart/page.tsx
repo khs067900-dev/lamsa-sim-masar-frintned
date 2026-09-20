@@ -214,25 +214,25 @@ export default function CartPage() {
       )}
 
       {/* HEADER */}
-      <header className="sticky top-0 z-30 backdrop-blur-xl border-b border-[#C8A375]/30" style={{ background: "rgba(255,255,255,0.95)" }}>
+      <header className="sticky top-0 z-30 backdrop-blur-xl border-b" style={{ background: "rgba(255,255,255,0.95)", borderColor: "var(--color-4)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-          <button onClick={() => router.back()} className="flex items-center gap-1.5 text-[#0A1C29]/60 hover:text-[#0A1C29] transition text-sm font-bold">
+          <button onClick={() => router.back()} className="flex items-center gap-1.5 transition text-sm font-bold" style={{ color: "var(--color-3)" }}>
             <ChevronRight className="w-4 h-4" />
             <span className="hidden sm:inline">رجوع</span>
           </button>
 
           <div className="flex items-center gap-2.5">
             <div className="relative">
-              <ShoppingBag className="w-5 h-5 text-[#B5854A]" />
-              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#B5854A] text-white text-[9px] font-black rounded-full flex items-center justify-center">
+              <ShoppingBag className="w-5 h-5" style={{ color: "var(--color-2)" }} />
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 text-white text-[9px] font-black rounded-full flex items-center justify-center" style={{ background: "var(--color-2)" }}>
                 {count}
               </span>
             </div>
-            <span className="text-base font-black text-[#0A1C29]">السلة</span>
+            <span className="text-base font-black" style={{ color: "var(--color-2)" }}>السلة</span>
           </div>
 
-          <Link href="/" className="w-9 h-9 rounded-xl border border-[#C8A375]/40 hover:border-[#B5854A] flex items-center justify-center transition" style={{ background: "#FEFEFE" }}>
-            <Home className="w-4 h-4 text-[#B5854A]" />
+          <Link href="/" className="w-9 h-9 rounded-xl border flex items-center justify-center transition" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
+            <Home className="w-4 h-4" style={{ color: "var(--color-2)" }} />
           </Link>
         </div>
       </header>
@@ -241,13 +241,13 @@ export default function CartPage() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 bg-white">
 
         {/* Summary Bar */}
-        <div className="rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 relative overflow-hidden border border-[#C8A375]/40" style={{ background: "linear-gradient(135deg, #FEFEFE 0%, #f5e6d3 100%)" }}>
-          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: "radial-gradient(circle, #B5854A 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+        <div className="rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 relative overflow-hidden border" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle, var(--color-2) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
           <div className="relative flex flex-row items-center justify-between gap-2">
             <div>
-              <p className="text-[#0A1C29]/50 text-xs mb-1">إجمالي الطلب</p>
-              <p className="text-3xl sm:text-4xl font-black text-[#B5854A]">
-                {fmt(total)} <span className="text-sm font-medium text-[#0A1C29]/40"><img src="/money-icon.webp" alt="ر.س" className="inline w-7 h-7 object-contain align-middle" /></span>
+              <p className="text-xs mb-1" style={{ color: "var(--color-3)" }}>إجمالي الطلب</p>
+              <p className="text-3xl sm:text-4xl font-black" style={{ color: "var(--color-2)" }}>
+                {fmt(total)} <span className="text-sm font-medium" style={{ color: "var(--color-3)" }}><img src="/money-icon.webp" alt="ر.س" className="inline w-7 h-7 object-contain align-middle" /></span>
               </p>
             </div>
             <div className="flex gap-3 sm:gap-6">
@@ -281,27 +281,26 @@ export default function CartPage() {
               </div>
             </section>
 
-            {/* Guest Notice */}
             {initialized && !user && (
-              <div className="border border-[#C8A375]/50 bg-[#fdf8f2] px-4 py-3.5" dir="rtl">
+              <div className="border px-4 py-3.5" style={{ borderColor: "var(--color-4)", background: "var(--color-1)" }} dir="rtl">
                 <div className="flex gap-3 items-start">
-                  <span className="text-[#B5854A] mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                  <span className="mt-0.5 shrink-0" style={{ color: "var(--color-4)" }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
                   <div className="space-y-2.5 flex-1">
-                    <p className="text-xs text-[#0A1C29]/70 leading-relaxed">
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--color-3)" }}>
                       لتتمكن من متابعة طلبك وتفاصيله بسهولة بعد إتمام الدفع، ننصحك بتسجيل الدخول أو إنشاء حساب — وهو اختياري تمامًا.
                     </p>
                     <div className="flex gap-2 flex-wrap">
                       <Link
                         href="/auth?redirect=/cart"
-                        className="text-xs font-bold text-[#0A1C29] border border-[#0A1C29]/30 px-3 py-1.5 hover:border-[#0A1C29] transition-colors"
-                        style={{ borderRadius: 0 }}
+                        className="text-xs font-bold border px-3 py-1.5 transition-colors"
+                        style={{ color: "var(--color-2)", borderColor: "var(--color-2)", borderRadius: 0 }}
                       >
                         تسجيل الدخول
                       </Link>
                       <Link
                         href="/auth?tab=register&redirect=/cart"
-                        className="text-xs font-bold text-[#B5854A] border border-[#B5854A]/40 px-3 py-1.5 hover:border-[#B5854A] transition-colors"
-                        style={{ borderRadius: 0 }}
+                        className="text-xs font-bold border px-3 py-1.5 transition-colors"
+                        style={{ color: "var(--color-4)", borderColor: "var(--color-4)", borderRadius: 0 }}
                       >
                         إنشاء حساب
                       </Link>
@@ -319,7 +318,7 @@ export default function CartPage() {
               }}
               disabled={redirecting}
               className="w-full py-4 rounded-xl text-white font-black text-base transition-all hover:opacity-90 active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-90"
-              style={{ background: "linear-gradient(135deg, #B5854A 0%, #C8A375 100%)" }}
+              style={{ background: "var(--color-2)" }}
             >
               {redirecting ? (
                 <>
@@ -341,33 +340,33 @@ export default function CartPage() {
           {/* LEFT: Sticky Summary (desktop) */}
           <aside className="hidden lg:block lg:col-span-4">
             <div className="lg:sticky lg:top-24 space-y-4">
-              <div className="rounded-2xl border border-[#C8A375]/40 overflow-hidden" style={{ background: "#ffffff" }}>
-                <div className="px-5 py-4 border-b border-[#C8A375]/30" style={{ background: "#FEFEFE" }}>
-                  <h3 className="text-sm font-black text-[#0A1C29]">ملخص الطلب</h3>
+              <div className="rounded-2xl border overflow-hidden bg-white" style={{ borderColor: "var(--color-4)" }}>
+                <div className="px-5 py-4 border-b" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
+                  <h3 className="text-sm font-black" style={{ color: "var(--color-2)" }}>ملخص الطلب</h3>
                 </div>
                 <div className="p-5 space-y-3">
                   {items.map(({ product, qty }) => {
                     const price = product.salePrice ?? product.originalPrice ?? product.price;
                     return (
                       <div key={product._id} className="flex justify-between items-start gap-2">
-                        <p className="text-xs text-[#0A1C29]/60 leading-relaxed line-clamp-1 flex-1">{product.name} <span className="text-[#0A1C29]/30">×{qty}</span></p>
-                        <span className="text-xs font-bold text-[#0A1C29] whitespace-nowrap">{fmt(price * qty)} <img src="/money-icon.webp" alt="ر.س" className="inline w-6 h-6 object-contain align-middle" /></span>
+                        <p className="text-xs leading-relaxed line-clamp-1 flex-1" style={{ color: "var(--color-3)" }}>{product.name} <span style={{ color: "var(--color-4)" }}>×{qty}</span></p>
+                        <span className="text-xs font-bold whitespace-nowrap" style={{ color: "var(--color-2)" }}>{fmt(price * qty)} <img src="/money-icon.webp" alt="ر.س" className="inline w-6 h-6 object-contain align-middle" /></span>
                       </div>
                     );
                   })}
-                  <div className="border-t border-dashed border-[#C8A375]/40 pt-3 flex justify-between text-xs">
-                    <span className="text-[#0A1C29]/50 flex items-center gap-1.5"><Truck size={12} /> التوصيل</span>
-                    <span className="font-bold text-[#B5854A]">مجاني ✓</span>
+                  <div className="border-t border-dashed pt-3 flex justify-between text-xs" style={{ borderColor: "var(--color-4)" }}>
+                    <span className="flex items-center gap-1.5" style={{ color: "var(--color-3)" }}><Truck size={12} /> التوصيل</span>
+                    <span className="font-bold" style={{ color: "var(--color-4)" }}>مجاني ✓</span>
                   </div>
-                  <div className="border-t border-[#C8A375]/30 pt-3 flex justify-between items-center">
-                    <span className="text-sm font-bold text-[#0A1C29]/60">الإجمالي</span>
-                    <span className="text-2xl font-black text-[#B5854A]">{fmt(total)} <span className="text-xs font-medium text-[#0A1C29]/40"><img src="/money-icon.webp" alt="ر.س" className="inline w-7 h-7 object-contain align-middle" /></span></span>
+                  <div className="border-t pt-3 flex justify-between items-center" style={{ borderColor: "var(--color-4)" }}>
+                    <span className="text-sm font-bold" style={{ color: "var(--color-3)" }}>الإجمالي</span>
+                    <span className="text-2xl font-black" style={{ color: "var(--color-2)" }}>{fmt(total)} <span className="text-xs font-medium" style={{ color: "var(--color-3)" }}><img src="/money-icon.webp" alt="ر.س" className="inline w-7 h-7 object-contain align-middle" /></span></span>
                   </div>
                 </div>
               </div>
 
               {/* Trust */}
-              <div className="rounded-2xl border border-[#C8A375]/40 p-4 grid grid-cols-2 gap-2" style={{ background: "#ffffff" }}>
+              <div className="rounded-2xl border p-4 grid grid-cols-2 gap-2" style={{ background: "#ffffff", borderColor: "var(--color-4)" }}>
                 <TrustBadge icon={<Lock size={13} />} text="دفع آمن" />
                 <TrustBadge icon={<Truck size={13} />} text="شحن سريع" />
                 <TrustBadge icon={<BadgeCheck size={13} />} text="ضمان رسمي" />
@@ -384,9 +383,9 @@ export default function CartPage() {
 function SectionHeader({ title, badge }: { title: string; badge?: string }) {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-1 h-5 rounded-full bg-[#B5854A]" />
-      <h2 className="text-sm sm:text-base font-black text-[#0A1C29]">{title}</h2>
-      {badge && <span className="text-[10px] font-bold text-[#B5854A] bg-[#B5854A]/10 border border-[#B5854A]/20 px-2 py-0.5 rounded-full">{badge}</span>}
+      <div className="w-1 h-5 rounded-full" style={{ background: "var(--color-2)" }} />
+      <h2 className="text-sm sm:text-base font-black" style={{ color: "var(--color-2)" }}>{title}</h2>
+      {badge && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border" style={{ color: "var(--color-4)", background: "rgba(139,168,210,0.1)", borderColor: "var(--color-4)" }}>{badge}</span>}
     </div>
   );
 }
@@ -394,18 +393,18 @@ function SectionHeader({ title, badge }: { title: string; badge?: string }) {
 function MiniStat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="text-center">
-      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-[#B5854A]/30 flex items-center justify-center mx-auto mb-0.5 text-[#B5854A]" style={{ background: "rgba(181,133,74,0.15)" }}>{icon}</div>
-      <p className="text-[#0A1C29]/50 text-[8px] sm:text-[9px]">{label}</p>
-      <p className="text-[#0A1C29] text-[10px] sm:text-[11px] font-bold">{value}</p>
+      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border flex items-center justify-center mx-auto mb-0.5" style={{ borderColor: "var(--color-4)", background: "rgba(139,168,210,0.15)", color: "var(--color-2)" }}>{icon}</div>
+      <p className="text-[8px] sm:text-[9px]" style={{ color: "var(--color-3)" }}>{label}</p>
+      <p className="text-[10px] sm:text-[11px] font-bold" style={{ color: "var(--color-2)" }}>{value}</p>
     </div>
   );
 }
 
 function TrustBadge({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-xl border border-[#C8A375]/40 px-3 py-2.5" style={{ background: "#FEFEFE" }}>
-      <span className="text-[#B5854A]">{icon}</span>
-      <span className="text-[11px] font-bold text-[#0A1C29]/70">{text}</span>
+    <div className="flex items-center gap-2 rounded-xl border px-3 py-2.5" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
+      <span style={{ color: "var(--color-2)" }}>{icon}</span>
+      <span className="text-[11px] font-bold" style={{ color: "var(--color-2)" }}>{text}</span>
     </div>
   );
 }

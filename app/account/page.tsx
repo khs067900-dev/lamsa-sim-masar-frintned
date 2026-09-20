@@ -262,36 +262,35 @@ function AccountPageInner() {
   const displayName = [user.firstName, user.lastName].filter(Boolean).join(" ") || "مستخدم";
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] flex flex-col items-center px-3 sm:px-4 py-8 sm:py-12" dir="rtl">
+    <div className="min-h-screen flex flex-col items-center px-3 sm:px-4 py-8 sm:py-12" style={{ background: "#ffffff" }} dir="rtl">
 
-      {/* ── Container ── max-w-[560px] مريح على موبايل وديسكتوب */}
       <div className="w-full max-w-[560px] space-y-3">
 
         {/* ── Hero ── */}
-        <div className="bg-white border border-[#e8e8e8] rounded-sm px-5 py-4 flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full bg-[#0A1C29]/8 border border-[#e0e0e0] flex items-center justify-center text-base font-black text-[#0A1C29] shrink-0 select-none">
+        <div className="border rounded-sm px-5 py-4 flex items-center gap-3" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
+          <div className="w-11 h-11 rounded-full border flex items-center justify-center text-base font-black shrink-0 select-none" style={{ background: "var(--color-4)", borderColor: "var(--color-4)", color: "#fff" }}>
             {initials}
           </div>
           <div className="min-w-0">
-            <p className="text-[15px] font-black text-[#0A1C29] truncate">{displayName}</p>
-            <p className="text-xs text-gray-400 truncate mt-0.5" dir="ltr">{user.email}</p>
+            <p className="text-[15px] font-black truncate" style={{ color: "var(--color-2)" }}>{displayName}</p>
+            <p className="text-xs truncate mt-0.5" style={{ color: "var(--color-3)" }} dir="ltr">{user.email}</p>
           </div>
         </div>
 
         {/* ── Tabs container ── */}
-        <div className="bg-white border border-[#e8e8e8] rounded-sm overflow-hidden">
+        <div className="border rounded-sm overflow-hidden" style={{ background: "#ffffff", borderColor: "var(--color-4)" }}>
 
           {/* Tab headers */}
-          <div className="flex border-b border-[#e8e8e8]">
+          <div className="flex border-b" style={{ borderColor: "var(--color-4)" }}>
             {(["profile", "orders"] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className={`flex-1 py-3.5 text-sm font-semibold transition-colors border-b-2 -mb-px ${
-                  tab === t
-                    ? "border-[#B5854A] text-[#0A1C29]"
-                    : "border-transparent text-gray-400 hover:text-gray-600"
-                }`}
+                className="flex-1 py-3.5 text-sm font-semibold transition-colors border-b-2 -mb-px"
+                style={tab === t
+                  ? { borderColor: "var(--color-2)", color: "var(--color-2)" }
+                  : { borderColor: "transparent", color: "var(--color-3)" }
+                }
               >
                 {t === "profile" ? "بياناتي" : "طلباتي"}
               </button>
@@ -316,17 +315,20 @@ function AccountPageInner() {
 
                 {!editing ? (
                   <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-3 p-4 bg-[#f7f8fa] border border-[#e8e8e8] rounded-sm">
+                    <div className="grid grid-cols-2 gap-3 p-4 border rounded-sm" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
                       <InfoRow label="الاسم الأول"  value={user.firstName} />
                       <InfoRow label="اسم العائلة" value={user.lastName} />
                     </div>
-                    <div className="p-4 bg-[#f7f8fa] border border-[#e8e8e8] rounded-sm space-y-4">
+                    <div className="p-4 border rounded-sm space-y-4" style={{ background: "var(--color-1)", borderColor: "var(--color-4)" }}>
                       <InfoRow label="البريد الإلكتروني" value={user.email}        ltr />
                       <InfoRow label="رقم الجوال"        value={user.phone || "—"} ltr />
                     </div>
                     <button
                       onClick={() => setEditing(true)}
-                      className="w-full py-3 border border-[#0A1C29] text-sm font-semibold text-[#0A1C29] hover:bg-[#0A1C29] hover:text-white transition-colors rounded-sm"
+                      className="w-full py-3 border text-sm font-semibold transition-colors rounded-sm"
+                      style={{ borderColor: "var(--color-2)", color: "var(--color-2)" }}
+                      onMouseEnter={e => { (e.target as HTMLButtonElement).style.background = "var(--color-2)"; (e.target as HTMLButtonElement).style.color = "#fff"; }}
+                      onMouseLeave={e => { (e.target as HTMLButtonElement).style.background = "transparent"; (e.target as HTMLButtonElement).style.color = "var(--color-2)"; }}
                     >
                       تعديل البيانات
                     </button>
@@ -344,14 +346,15 @@ function AccountPageInner() {
                             id={`acc-${id}`}
                             value={value}
                             onChange={(e) => (set as (v: string) => void)(e.target.value)}
-                            className="w-full px-3 py-2.5 border border-[#d9d9d9] text-sm rounded-sm focus:outline-none focus:border-[#B5854A] transition-colors bg-white"
+                            className="w-full px-3 py-2.5 border text-sm rounded-sm focus:outline-none transition-colors bg-white"
+                            style={{ borderColor: "var(--color-4)", color: "var(--color-2)" }}
                           />
                         </div>
                       ))}
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-xs font-medium text-gray-500">البريد الإلكتروني</label>
-                      <div className="w-full px-3 py-2.5 border border-[#e8e8e8] bg-[#f7f8fa] text-sm text-gray-400 rounded-sm select-none" dir="ltr">
+                      <div className="w-full px-3 py-2.5 border text-sm select-none rounded-sm" style={{ background: "var(--color-1)", borderColor: "var(--color-4)", color: "var(--color-3)" }} dir="ltr">
                         {user.email}
                       </div>
                     </div>
@@ -363,14 +366,16 @@ function AccountPageInner() {
                         onChange={(e) => setPhone(e.target.value)}
                         dir="ltr"
                         inputMode="tel"
-                        className="w-full px-3 py-2.5 border border-[#d9d9d9] text-sm rounded-sm focus:outline-none focus:border-[#B5854A] transition-colors bg-white"
+                        className="w-full px-3 py-2.5 border text-sm rounded-sm focus:outline-none transition-colors bg-white"
+                        style={{ borderColor: "var(--color-4)", color: "var(--color-2)" }}
                       />
                     </div>
                     <div className="flex gap-2 pt-1">
                       <button
                         onClick={handleSave}
                         disabled={saving}
-                        className="flex-1 py-3 bg-[#0A1C29] text-white text-sm font-semibold hover:bg-[#1a3a5c] transition-colors disabled:opacity-60 flex items-center justify-center gap-2 rounded-sm"
+                        className="flex-1 py-3 text-white text-sm font-semibold transition-colors disabled:opacity-60 flex items-center justify-center gap-2 rounded-sm"
+                        style={{ background: "var(--color-2)" }}
                       >
                         {saving ? <Spinner sm /> : "حفظ التعديلات"}
                       </button>
@@ -381,7 +386,8 @@ function AccountPageInner() {
                           setLastName(user.lastName   || "");
                           setPhone(user.phone         || "");
                         }}
-                        className="px-4 py-3 border border-[#d9d9d9] text-sm text-gray-600 hover:border-[#0A1C29] transition-colors rounded-sm"
+                        className="px-4 py-3 border text-sm transition-colors rounded-sm"
+                        style={{ borderColor: "var(--color-4)", color: "var(--color-3)" }}
                       >
                         إلغاء
                       </button>

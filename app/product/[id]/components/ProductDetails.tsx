@@ -22,18 +22,18 @@ export default function ProductDetails({ description, specifications }: ProductD
   const [active, setActive] = useState("specs");
 
   return (
-    <div className="mt-12 border-t border-gray-100 pt-10">
+    <div className="mt-12 border-t pt-10" style={{ borderColor: "var(--color-1)" }}>
       {/* Tab Bar */}
       <div className="flex gap-2 mb-8 overflow-x-auto scrollbar-hide">
         {TABS.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActive(tab.key)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border ${
-              active === tab.key
-                ? "bg-[#B5854A] text-white border-[#B5854A]"
-                : "text-gray-500 border-gray-200 hover:border-[#B5854A]/40 hover:text-gray-800 bg-gray-50"
-            }`}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border"
+            style={active === tab.key
+              ? { background: "var(--color-2)", color: "#fff", borderColor: "var(--color-2)" }
+              : { color: "var(--color-3)", borderColor: "var(--color-4)", background: "var(--color-1)" }
+            }
           >
             {tab.icon}
             {tab.label}
@@ -56,17 +56,18 @@ export default function ProductDetails({ description, specifications }: ProductD
                 <div className="space-y-4">
                   {specifications.map((group, gi) => (
                     <div key={gi} className="rounded-2xl overflow-hidden border border-gray-100">
-                      <div className="px-4 py-2.5 border-b border-[#C8A375]/30 bg-[#C8A375]/20">
-                        <h3 className="text-xs font-black text-[#B5854A] uppercase tracking-wider">{group.groupName}</h3>
+                      <div className="px-4 py-2.5 border-b" style={{ borderColor: "var(--color-4)", background: "rgba(139,168,210,0.15)" }}>
+                        <h3 className="text-xs font-black uppercase tracking-wider" style={{ color: "var(--color-2)" }}>{group.groupName}</h3>
                       </div>
                       <div className="bg-white">
                         {group.items.map((item, ii) => (
                           <div
                             key={ii}
-                            className={`flex items-center justify-between px-4 py-3 ${ii < group.items.length - 1 ? "border-b border-gray-50" : ""}`}
+                            className={`flex items-center justify-between px-4 py-3 ${ii < group.items.length - 1 ? "border-b" : ""}`}
+                            style={ii < group.items.length - 1 ? { borderColor: "var(--color-1)" } : {}}
                           >
-                            <span className="text-xs text-gray-400">{item.label}</span>
-                            <span className="text-xs font-bold text-gray-800">{item.value}</span>
+                            <span className="text-xs" style={{ color: "var(--color-3)" }}>{item.label}</span>
+                            <span className="text-xs font-bold" style={{ color: "var(--color-2)" }}>{item.value}</span>
                           </div>
                         ))}
                       </div>
