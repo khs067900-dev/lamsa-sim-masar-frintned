@@ -67,15 +67,15 @@ export default async function Footer() {
                   <span className="text-xs text-gray-500 font-mono">7055249325</span>
                 </div>
               </a>
-             {/* <a href="https://eauthenticate.saudibusiness.gov.sa/inquiry" target="_blank" rel="noreferrer"
+             <a href="https://eauthenticate.saudibusiness.gov.sa/inquiry" target="_blank" rel="noreferrer"
                 className="flex items-center gap-2 group">
                 <Image src="/work.webp" alt="شهادة توثيق" width={36} height={36} className="object-contain rounded-md shrink-0" />
                 <div className="flex flex-col">
                   <span className="text-xs font-semibold text-black group-hover:underline">شهادة توثيق</span>
                   <span className="text-xs text-gray-500">مركز الاعمال</span>
-                  <span className="text-xs text-gray-500 font-mono">0000325383</span>
+                  <span className="text-xs text-gray-500 font-mono">0000328458</span>
                 </div>
-              </a> */}
+              </a>
             </div>
           </div>
 
