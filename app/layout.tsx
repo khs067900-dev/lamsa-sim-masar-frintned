@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cairo } from "next/font/google";
+import Script from "next/script";
 import TikTokPixel from "./components/TikTokPixel";
 import SnapchatPixel from "./components/SnapchatPixel";
 import "./globals.css";
@@ -118,6 +119,16 @@ export default async function RootLayout({
       <body className={`${cairo.className} antialiased`} suppressHydrationWarning>
         <ClientLayout footer={<Footer />}>{children}</ClientLayout>
         <SnapchatPixel />
+        <div
+          className="sbc-verify-seal"
+          data-token="UGdEMHMvZm1nSlJGN0ZnVmpYZEF0UT09"
+          data-position="bottom-left"
+        />
+        <Script
+          id="saudi-business-verification-seal"
+          src="https://eauthenticate.saudibusiness.gov.sa/EAuthSealApi/seal.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

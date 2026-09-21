@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sc-static.net https://tr.snapchat.com https://analytics.tiktok.com",
-              "connect-src 'self' https://sc-static.net https://tr.snapchat.com https://cf-st.sc-cdn.net https://analytics.tiktok.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sc-static.net https://tr.snapchat.com https://analytics.tiktok.com https://eauthenticate.saudibusiness.gov.sa",
+              "connect-src 'self' https://sc-static.net https://tr.snapchat.com https://cf-st.sc-cdn.net https://analytics.tiktok.com https://eauthenticate.saudibusiness.gov.sa",
               "img-src 'self' data: blob: https://tr.snapchat.com https://sc-static.net https:",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' data: https://fonts.gstatic.com",
